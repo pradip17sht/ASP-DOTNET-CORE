@@ -1,0 +1,34 @@
+﻿@model System.Data.DataTable
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<h2>List</h2>
+<p>
+    <a href="@Url.Action("Create","Customer")">Add Customer</a>
+</p>
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>Customer Name</th>
+        <th>Customer Address</th>
+        <th>PhoneNo</th>
+        <th></th>
+    </tr>
+
+    @for (int i = 0; i < Model.Rows.Count; i++)
+    {
+        <tr>
+            <td>@Model.Rows[i][1]</td>
+            <td>@Model.Rows[i][2]</td>
+            <td>@Model.Rows[i][3]</td>
+            <td>
+                <a href="@Url.Action("Edit", "Customer", new {@id=@Model.Rows[i][0] })">Edit</a>
+                <a href="@Url.Action("Delete", "Customer", new {@id=@Model.Rows[i][0] })">Delete</a>
+            </td>
+        </tr>
+    }
+</table>
+
+

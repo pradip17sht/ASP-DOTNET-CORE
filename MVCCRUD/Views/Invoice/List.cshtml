@@ -1,0 +1,101 @@
+﻿@model System.Data.DataTable
+
+@{
+    ViewData["Title"] = "List";
+}
+<link rel="stylesheet" type="text/css" href="front.css">
+<h2>List</h2>
+<p>
+    <a href="@Url.Action("Create","Invoice")">Add Invoice</a>
+</p>
+<div class="invoice-box">
+    <table cellpadding="0" cellspacing="0">
+        <tr class="top">
+            <td colspan="2">
+                <table>
+                    <tr>
+                        <td class="title">
+                            <img src="invoice.jpg">
+                        </td>
+
+                        <td>
+                            Your Company Name
+                            <h6>
+                                Your Bussiness Address<br>
+                                City <br>
+                                Country<br>
+                                Postal
+                            </h6>
+                        </td>
+                    </tr>
+                </table>
+                <hr />
+            </td>
+        </tr>
+
+
+
+        <tr class="information">
+            <td colspan="2">
+                <table>
+                    <tr>
+                        <td>
+                            BILL TO:
+                            Company Name
+                            <h6>
+                                Address<br>
+                                City <br>
+                                Country<br>
+                                Postal
+                            </h6>
+                        </td>
+
+                        <td>
+                            <h6>
+                                INVOICE<br>
+                                0000001<br>
+                                DATE<br>
+                                12/31/20<br>
+                                INVOICE DUE <br>
+                                12/31/20<br>
+                            </h6>
+
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+
+
+    </table>
+</div>
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>Items</th>
+        <th>Description</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Tax</th>
+        <th>Amount</th>
+        <th></th>
+    </tr>
+
+    @for (int i = 0; i < Model.Rows.Count; i++)
+    {
+        <tr>
+            <td>@Model.Rows[i][1]</td>
+            <td>@Model.Rows[i][2]</td>
+            <td>@Model.Rows[i][3]</td>
+            <td>@Model.Rows[i][4]</td>
+            <td>@Model.Rows[i][5]</td>
+            <td>@Model.Rows[i][6]</td>
+            <td>
+                <a href="@Url.Action("Edit", "Invoice", new {@id=@Model.Rows[i][0] })">Edit</a>
+                <a href="@Url.Action("Delete", "Invoice", new {@id=@Model.Rows[i][0] })">Delete</a>
+            </td>
+        </tr>
+    }
+</table>
+
+
+
